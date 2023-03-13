@@ -5,11 +5,11 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 
-SCOPES = ['https://www.googleapis.com/auth/calendar']
 
-CREDENTIALS_FILE = 'pythonCalendar\py\json\code_api.json'
 
 def get_calendar_service():
+   SCOPES = ['https://www.googleapis.com/auth/calendar']    
+   CREDENTIALS_FILE = 'json\code_api.json'
    creds = None
    if os.path.exists('token.pickle'):
        with open('token.pickle', 'rb') as token:

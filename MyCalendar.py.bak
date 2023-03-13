@@ -6,6 +6,8 @@
 import wx
 # begin wxGlade: dependencies
 import wx.adv
+from Ajout import Ajout
+from app import get_calendar_service
 # end wxGlade
 
 # begin wxGlade: extracode
@@ -40,6 +42,9 @@ class MyCalendar(wx.Frame):
         self.check_list_box_1 = wx.CheckListBox(self.window_1_pane_1, wx.ID_ANY, choices=["Vacances (Zone A)", "Vacances (Zone B)", "Vacances (Zone C)", u"Jours Fériés"])
         sizer_4.Add(self.check_list_box_1, 0, wx.EXPAND | wx.SHAPED, 0)
 
+        self.btn_googleapi = wx.Button(self.window_1_pane_1, wx.ID_ANY, u"Connexion Google 🦍")
+        sizer_4.Add(self.btn_googleapi, 0, wx.EXPAND, 0)
+
         self.window_1_pane_2 = wx.Panel(self.window_1, wx.ID_ANY)
 
         sizer_2 = wx.BoxSizer(wx.VERTICAL)
@@ -70,7 +75,14 @@ class MyCalendar(wx.Frame):
         # end wxGlade
 
     def OnAdd(self, event):  # wxGlade: MyCalendar.<event_handler>
-        secondWindow = Ajout()
-        secondWindow.Show()
+        addDialog = Ajout(self)
+        get_calendar_service()
+        result = addDialog.ShowModal()
+        if(result == wx.ID_OK):
+            self.lblReturn.SetLabelText(addDialog.txtEvt.GetValue())
+
+        
+
+
 
 # end of class MyCalendar

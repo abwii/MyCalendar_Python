@@ -4,9 +4,10 @@
 #
 
 import wx
+from Ajout import Ajout
+from cal_setup import get_calendar_service
 # begin wxGlade: dependencies
 import wx.adv
-from Ajout import Ajout
 # end wxGlade
 
 # begin wxGlade: extracode
@@ -18,8 +19,11 @@ class MyCalendar(wx.Frame):
         # begin wxGlade: MyCalendar.__init__
         kwds["style"] = kwds.get("style", 0) | wx.DEFAULT_FRAME_STYLE
         wx.Frame.__init__(self, *args, **kwds)
-        self.SetSize((539, 300))
-        self.SetTitle("frame")
+        self.SetSize((600, 300))
+        self.SetTitle("My Calendar")
+        _icon = wx.NullIcon
+        _icon.CopyFromBitmap(wx.Bitmap("C:\\Users\\wbach\\Documents\\MEGAsync\\IMIE\\PPE\\6 - MyCalendar Python\\img\\gestionnaire_calendar.png", wx.BITMAP_TYPE_ANY))
+        self.SetIcon(_icon)
 
         self.panel_1 = wx.Panel(self, wx.ID_ANY)
 
@@ -40,6 +44,15 @@ class MyCalendar(wx.Frame):
 
         self.check_list_box_1 = wx.CheckListBox(self.window_1_pane_1, wx.ID_ANY, choices=["Vacances (Zone A)", "Vacances (Zone B)", "Vacances (Zone C)", u"Jours Fériés"])
         sizer_4.Add(self.check_list_box_1, 0, wx.EXPAND | wx.SHAPED, 0)
+
+        sizer_5 = wx.BoxSizer(wx.HORIZONTAL)
+        sizer_4.Add(sizer_5, 1, wx.EXPAND, 0)
+
+        self.btnGoogle = wx.Button(self.window_1_pane_1, wx.ID_ANY, u"Connexion à Google")
+        sizer_5.Add(self.btnGoogle, 0, wx.ALIGN_CENTER_VERTICAL | wx.EXPAND | wx.SHAPED, 0)
+
+        imgGoogle = wx.StaticBitmap(self.window_1_pane_1, wx.ID_ANY, wx.Bitmap("./img/F.png", wx.BITMAP_TYPE_ANY))
+        sizer_5.Add(imgGoogle, 0, wx.ALIGN_CENTER_VERTICAL | wx.EXPAND | wx.SHAPED, 0)
 
         self.window_1_pane_2 = wx.Panel(self.window_1, wx.ID_ANY)
 
@@ -67,6 +80,7 @@ class MyCalendar(wx.Frame):
 
         self.Layout()
 
+        self.Bind(wx.EVT_BUTTON, self.ConnGoogle, self.btnGoogle)
         self.Bind(wx.EVT_BUTTON, self.OnAdd, self.btnAdd)
         # end wxGlade
 
@@ -77,5 +91,10 @@ class MyCalendar(wx.Frame):
             self.lblReturn.SetLabelText(addDialog.txtEvt.GetValue())
 
 
+    def ConnGoogle(self, event):  # wxGlade: MyCalendar.<event_handler>
+        print("Connexion Google")
+        get_calendar_service()
+        print("Fin Connexion Google")
+        
 
 # end of class MyCalendar
