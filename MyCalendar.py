@@ -6,6 +6,7 @@
 import wx
 # begin wxGlade: dependencies
 import wx.adv
+from Ajout import Ajout
 # end wxGlade
 
 # begin wxGlade: extracode
@@ -17,7 +18,7 @@ class MyCalendar(wx.Frame):
         # begin wxGlade: MyCalendar.__init__
         kwds["style"] = kwds.get("style", 0) | wx.DEFAULT_FRAME_STYLE
         wx.Frame.__init__(self, *args, **kwds)
-        self.SetSize((539, 436))
+        self.SetSize((539, 300))
         self.SetTitle("frame")
 
         self.panel_1 = wx.Panel(self, wx.ID_ANY)
@@ -70,7 +71,11 @@ class MyCalendar(wx.Frame):
         # end wxGlade
 
     def OnAdd(self, event):  # wxGlade: MyCalendar.<event_handler>
-        secondWindow = Ajout()
-        secondWindow.Show()
+        addDialog = Ajout(self)
+        result = addDialog.ShowModal()
+        if(result == wx.ID_OK):
+            self.lblReturn.SetLabelText(addDialog.txtEvt.GetValue())
+
+
 
 # end of class MyCalendar
