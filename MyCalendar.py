@@ -6,7 +6,6 @@
 import wx
 # begin wxGlade: dependencies
 import wx.adv
-import Ajout
 # end wxGlade
 
 # begin wxGlade: extracode
@@ -18,7 +17,7 @@ class MyCalendar(wx.Frame):
         # begin wxGlade: MyCalendar.__init__
         kwds["style"] = kwds.get("style", 0) | wx.DEFAULT_FRAME_STYLE
         wx.Frame.__init__(self, *args, **kwds)
-        self.SetSize((431, 313))
+        self.SetSize((539, 436))
         self.SetTitle("frame")
 
         self.panel_1 = wx.Panel(self, wx.ID_ANY)
@@ -31,31 +30,22 @@ class MyCalendar(wx.Frame):
 
         self.window_1_pane_1 = wx.Panel(self.window_1, wx.ID_ANY)
 
-        grid_sizer_1 = wx.GridSizer(4, 2, 0, 0)
+        sizer_4 = wx.BoxSizer(wx.VERTICAL)
 
-        grid_sizer_1.Add((0, 0), 0, 0, 0)
+        label_1 = wx.StaticText(self.window_1_pane_1, wx.ID_ANY, "Liste des topics", style=wx.ALIGN_CENTER_HORIZONTAL)
+        label_1.SetMinSize((250, 30))
+        label_1.SetFont(wx.Font(13, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, ""))
+        sizer_4.Add(label_1, 0, wx.ALL, 12)
 
-        grid_sizer_1.Add((0, 0), 0, 0, 0)
-
-        self.lblReturn = wx.StaticText(self.window_1_pane_1, wx.ID_ANY, "Return")
-        grid_sizer_1.Add(self.lblReturn, 0, 0, 0)
-
-        grid_sizer_1.Add((0, 0), 0, 0, 0)
-
-        grid_sizer_1.Add((0, 0), 0, 0, 0)
-
-        grid_sizer_1.Add((0, 0), 0, 0, 0)
-
-        grid_sizer_1.Add((0, 0), 0, 0, 0)
-
-        grid_sizer_1.Add((0, 0), 0, 0, 0)
+        self.check_list_box_1 = wx.CheckListBox(self.window_1_pane_1, wx.ID_ANY, choices=["Vacances (Zone A)", "Vacances (Zone B)", "Vacances (Zone C)", u"Jours Fériés"])
+        sizer_4.Add(self.check_list_box_1, 0, wx.EXPAND | wx.SHAPED, 0)
 
         self.window_1_pane_2 = wx.Panel(self.window_1, wx.ID_ANY)
 
         sizer_2 = wx.BoxSizer(wx.VERTICAL)
 
         self.calendar = wx.adv.GenericCalendarCtrl(self.window_1_pane_2, wx.ID_ANY)
-        sizer_2.Add(self.calendar, 0, 0, 0)
+        sizer_2.Add(self.calendar, 0, wx.EXPAND, 0)
 
         sizer_3 = wx.GridSizer(1, 2, 0, 0)
         sizer_2.Add(sizer_3, 1, wx.EXPAND, 0)
@@ -68,7 +58,7 @@ class MyCalendar(wx.Frame):
 
         self.window_1_pane_2.SetSizer(sizer_2)
 
-        self.window_1_pane_1.SetSizer(grid_sizer_1)
+        self.window_1_pane_1.SetSizer(sizer_4)
 
         self.window_1.SplitVertically(self.window_1_pane_1, self.window_1_pane_2)
 
