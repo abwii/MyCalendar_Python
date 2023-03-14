@@ -75,6 +75,11 @@ class Ajout(wx.Dialog):
         self.SetEscapeId(self.button_CANCEL.GetId())
 
         self.Layout()
+
+        self.Bind(wx.EVT_BUTTON, self.OnAjoutConfirmed, self.button_OK)
         # end wxGlade
 
+    def OnAjoutConfirmed(self, event):  # wxGlade: Ajout.<event_handler>
+        print("Event handler 'OnAjoutConfirmed' not implemented!")
+        event.Skip()
 # end of class Ajout

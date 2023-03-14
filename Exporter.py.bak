@@ -31,8 +31,8 @@ class Exporter(wx.Dialog):
         label_1 = wx.StaticText(self, wx.ID_ANY, "Identifiant de l'agenda :")
         sizer_4.Add(label_1, 0, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 5)
 
-        self.text_ctrl_1 = wx.TextCtrl(self, wx.ID_ANY, "")
-        sizer_4.Add(self.text_ctrl_1, 0, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 5)
+        self.txt_id_google = wx.TextCtrl(self, wx.ID_ANY, "", style=wx.TE_MULTILINE)
+        sizer_4.Add(self.txt_id_google, 0, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 5)
 
         sizer_3.Add((0, 0), 0, 0, 0)
 
