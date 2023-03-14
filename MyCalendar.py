@@ -5,6 +5,7 @@
 
 import wx
 from Ajout import Ajout
+from Exporter import Exporter
 from cal_setup import get_calendar_service
 # begin wxGlade: dependencies
 import wx.adv
@@ -42,8 +43,8 @@ class MyCalendar(wx.Frame):
         label_1.SetFont(wx.Font(13, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, ""))
         sizer_4.Add(label_1, 0, wx.ALL, 12)
 
-        self.check_list_box_1 = wx.CheckListBox(self.window_1_pane_1, wx.ID_ANY, choices=["Vacances (Zone A)", "Vacances (Zone B)", "Vacances (Zone C)", u"Jours Fériés"])
-        sizer_4.Add(self.check_list_box_1, 0, wx.EXPAND | wx.SHAPED, 0)
+        self.check_list_box_topics = wx.CheckListBox(self.window_1_pane_1, wx.ID_ANY, choices=["Vacances (Zone A)", "Vacances (Zone B)", "Vacances (Zone C)", u"Jours Fériés"])
+        sizer_4.Add(self.check_list_box_topics, 0, wx.EXPAND | wx.SHAPED, 0)
 
         sizer_5 = wx.BoxSizer(wx.HORIZONTAL)
         sizer_4.Add(sizer_5, 1, wx.EXPAND, 0)
@@ -67,8 +68,8 @@ class MyCalendar(wx.Frame):
         self.btnAdd = wx.Button(self.window_1_pane_2, wx.ID_ANY, "Ajout ...")
         sizer_3.Add(self.btnAdd, 0, wx.EXPAND, 0)
 
-        self.button_2 = wx.Button(self.window_1_pane_2, wx.ID_ANY, "Exporter")
-        sizer_3.Add(self.button_2, 0, wx.EXPAND, 0)
+        self.btn_exporter = wx.Button(self.window_1_pane_2, wx.ID_ANY, "Exporter")
+        sizer_3.Add(self.btn_exporter, 0, wx.EXPAND, 0)
 
         self.window_1_pane_2.SetSizer(sizer_2)
 
@@ -82,6 +83,7 @@ class MyCalendar(wx.Frame):
 
         self.Bind(wx.EVT_BUTTON, self.ConnGoogle, self.btnGoogle)
         self.Bind(wx.EVT_BUTTON, self.OnAdd, self.btnAdd)
+        self.Bind(wx.EVT_BUTTON, self.OnExport, self.btn_exporter)
         # end wxGlade
 
     def OnAdd(self, event):  # wxGlade: MyCalendar.<event_handler>
@@ -94,7 +96,15 @@ class MyCalendar(wx.Frame):
     def ConnGoogle(self, event):  # wxGlade: MyCalendar.<event_handler>
         print("Connexion Google")
         get_calendar_service()
+        # changement source image google connexion (👌)
         print("Fin Connexion Google")
         
+
+    def OnExport(self, event):  # wxGlade: MyCalendar.<event_handler>
+        addDialog = Exporter(self)
+        result = addDialog.ShowModal()
+        if(result == wx.ID_OK):
+            self.lblReturn.SetLabelText(addDialog.txtEvt.GetValue())
+
 
 # end of class MyCalendar
