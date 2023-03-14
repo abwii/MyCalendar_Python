@@ -4,6 +4,7 @@
 #
 
 import wx
+from create_event import create_event
 # begin wxGlade: dependencies
 # end wxGlade
 
@@ -41,6 +42,16 @@ class ExportPrincipalVerif(wx.Dialog):
         self.SetAffirmativeId(self.button_OUI.GetId())
 
         self.Layout()
+
+        self.Bind(wx.EVT_BUTTON, self.OnYesBtn, self.button_OUI)
+        self.Bind(wx.EVT_BUTTON, self.OnNoBtn, self.button_NON)
         # end wxGlade
 
+    def OnYesBtn(self, event):  # wxGlade: ExportPrincipalVerif.<event_handler>
+        print("Création d'event sur agenda principal")
+        create_event('primary')
+
+    def OnNoBtn(self, event):  # wxGlade: ExportPrincipalVerif.<event_handler>
+        print("Event handler 'OnNoBtn' not implemented!")
+        event.Skip()
 # end of class ExportPrincipalVerif

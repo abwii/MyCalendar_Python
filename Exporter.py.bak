@@ -4,6 +4,7 @@
 #
 
 import wx
+from ExportPrincipalVerif import ExportPrincipalVerif
 # begin wxGlade: dependencies
 # end wxGlade
 
@@ -45,6 +46,9 @@ class Exporter(wx.Dialog):
         self.button_APPLY = wx.Button(self, wx.ID_APPLY, "")
         sizer_2.AddButton(self.button_APPLY)
 
+        self.button_primary = wx.Button(self, wx.ID_ANY, "Exporter sur l'agenda principal")
+        sizer_2.Add(self.button_primary, 0, 0, 0)
+
         sizer_2.Realize()
 
         self.SetSizer(sizer_1)
@@ -55,10 +59,17 @@ class Exporter(wx.Dialog):
         self.Layout()
 
         self.Bind(wx.EVT_BUTTON, self.OnExportConfirmed, self.button_APPLY)
+        self.Bind(wx.EVT_BUTTON, self.OnExportPrimary, self.button_primary)
         # end wxGlade
 
     def OnExportConfirmed(self, event):  # wxGlade: Exporter.<event_handler>
         print("Event handler 'OnExportConfirmed' not implemented!")
         event.Skip()
+
+    def OnExportPrimary(self, event):  # wxGlade: Exporter.<event_handler>
+        addDialog = ExportPrincipalVerif(self)
+        result = addDialog.ShowModal()
+        if(result == wx.ID_OK):
+            self.lblReturn.SetLabelText(addDialog.txtEvt.GetValue())
 
 # end of class Exporter
