@@ -1,0 +1,26 @@
+[
+  {
+    "start": "2003-01-01",
+    "annee": 2003,
+    "description": "Métropole",
+    "summary": "1er janvier"
+  },
+  {
+    "start": "2003-04-21",
+    "annee": 2003,
+    "description": "Métropole",
+    "summary": "Lundi de Pâques"
+  },
+  {
+    "start": "2003-05-01",
+    "annee": 2003,
+    "description": "Métropole",
+    "summary": "1er mai"
+  },
+  {
+    "start": "2003-05-08",
+    "annee": 2003,
+    "description": "Métropole",
+    "summary": "8 mai"
+  }
+]
