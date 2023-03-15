@@ -23,7 +23,7 @@ class MyCalendar(wx.Frame):
         self.SetSize((550, 300))
         self.SetTitle("My Calendar")
         _icon = wx.NullIcon
-        _icon.CopyFromBitmap(wx.Bitmap("C:\\Users\\wbach\\Documents\\MEGAsync\\IMIE\\PPE\\6 - MyCalendar Python\\img\\gestionnaire_calendar.png", wx.BITMAP_TYPE_ANY))
+        _icon.CopyFromBitmap(wx.Bitmap("img\\gestionnaire_calendar.png", wx.BITMAP_TYPE_ANY))
         self.SetIcon(_icon)
 
         self.panel_1 = wx.Panel(self, wx.ID_ANY)

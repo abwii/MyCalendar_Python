@@ -5,6 +5,7 @@
 
 import wx
 from ExportPrincipalVerif import ExportPrincipalVerif
+from create_event import create_event
 # begin wxGlade: dependencies
 # end wxGlade
 
@@ -62,9 +63,12 @@ class Exporter(wx.Dialog):
         self.Bind(wx.EVT_BUTTON, self.OnExportPrimary, self.button_primary)
         # end wxGlade
 
+    
+
     def OnExportConfirmed(self, event):  # wxGlade: Exporter.<event_handler>
-        print("Event handler 'OnExportConfirmed' not implemented!")
-        event.Skip()
+        print("Création d'event sur agenda custom")
+        # id_google = txt_id_google.GetString()
+        # create_event(id_google)
 
     def OnExportPrimary(self, event):  # wxGlade: Exporter.<event_handler>
         addDialog = ExportPrincipalVerif(self)

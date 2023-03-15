@@ -20,7 +20,7 @@ class MyCalendar(wx.Frame):
         # begin wxGlade: MyCalendar.__init__
         kwds["style"] = kwds.get("style", 0) | wx.DEFAULT_FRAME_STYLE
         wx.Frame.__init__(self, *args, **kwds)
-        self.SetSize((600, 300))
+        self.SetSize((550, 300))
         self.SetTitle("My Calendar")
         _icon = wx.NullIcon
         _icon.CopyFromBitmap(wx.Bitmap("C:\\Users\\wbach\\Documents\\MEGAsync\\IMIE\\PPE\\6 - MyCalendar Python\\img\\gestionnaire_calendar.png", wx.BITMAP_TYPE_ANY))
