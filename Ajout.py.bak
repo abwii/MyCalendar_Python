@@ -82,4 +82,5 @@ class Ajout(wx.Dialog):
     def OnAjoutConfirmed(self, event):  # wxGlade: Ajout.<event_handler>
         print("Event handler 'OnAjoutConfirmed' not implemented!")
         event.Skip()
+        
 # end of class Ajout

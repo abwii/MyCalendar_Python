@@ -52,8 +52,8 @@ class MyCalendar(wx.Frame):
         self.btnGoogle = wx.Button(self.window_1_pane_1, wx.ID_ANY, u"Connexion à Google")
         sizer_5.Add(self.btnGoogle, 0, wx.ALIGN_CENTER_VERTICAL | wx.EXPAND | wx.SHAPED, 0)
 
-        imgGoogle = wx.StaticBitmap(self.window_1_pane_1, wx.ID_ANY, wx.Bitmap("./img/F.png", wx.BITMAP_TYPE_ANY))
-        sizer_5.Add(imgGoogle, 0, wx.ALIGN_CENTER_VERTICAL | wx.EXPAND | wx.SHAPED, 0)
+        self.imgGoogle = wx.StaticBitmap(self.window_1_pane_1, wx.ID_ANY, wx.Bitmap("./img/F.png", wx.BITMAP_TYPE_ANY))
+        sizer_5.Add(self.imgGoogle, 0, wx.ALIGN_CENTER_VERTICAL | wx.EXPAND | wx.SHAPED, 0)
 
         self.window_1_pane_2 = wx.Panel(self.window_1, wx.ID_ANY)
 
@@ -97,6 +97,7 @@ class MyCalendar(wx.Frame):
         print("Connexion Google")
         get_calendar_service()
         # changement source image google connexion (👌)
+        self.imgGoogle.SetBitmap (wx.Bitmap("img\V.png"))
         print("Fin Connexion Google")
         
 
