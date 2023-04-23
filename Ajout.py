@@ -17,7 +17,7 @@ class Ajout(wx.Dialog):
         # begin wxGlade: Ajout.__init__
         kwds["style"] = kwds.get("style", 0) | wx.DEFAULT_DIALOG_STYLE
         wx.Dialog.__init__(self, *args, **kwds)
-        self.SetTitle("Ajout de Topic")
+        self.SetTitle("dialog")
 
         sizer_1 = wx.BoxSizer(wx.VERTICAL)
 
@@ -32,25 +32,25 @@ class Ajout(wx.Dialog):
         grid_sizer_1.Add(lblNom, 0, wx.ALIGN_CENTER, 0)
 
         self.txtNom = wx.TextCtrl(self, wx.ID_ANY, "")
-        grid_sizer_1.Add(self.txtNom, 0, wx.ALIGN_CENTER | wx.RIGHT, 25)
+        grid_sizer_1.Add(self.txtNom, 0, wx.ALIGN_CENTER, 0)
 
         lblDesc = wx.StaticText(self, wx.ID_ANY, "Description :")
         grid_sizer_1.Add(lblDesc, 0, wx.ALIGN_CENTER, 0)
 
         self.txtDesc = wx.TextCtrl(self, wx.ID_ANY, "")
-        grid_sizer_1.Add(self.txtDesc, 0, wx.ALIGN_CENTER | wx.RIGHT, 25)
+        grid_sizer_1.Add(self.txtDesc, 0, wx.ALIGN_CENTER, 0)
 
         lblDebut = wx.StaticText(self, wx.ID_ANY, u"Début :")
         grid_sizer_1.Add(lblDebut, 0, wx.ALIGN_CENTER, 0)
 
         self.datepickerDebut = wx.adv.DatePickerCtrl(self, wx.ID_ANY)
-        grid_sizer_1.Add(self.datepickerDebut, 0, wx.ALIGN_CENTER | wx.RIGHT, 25)
+        grid_sizer_1.Add(self.datepickerDebut, 0, wx.ALIGN_CENTER, 0)
 
         lblFin = wx.StaticText(self, wx.ID_ANY, "Fin :")
         grid_sizer_1.Add(lblFin, 0, wx.ALIGN_CENTER, 0)
 
         self.datepickerFin = wx.adv.DatePickerCtrl(self, wx.ID_ANY)
-        grid_sizer_1.Add(self.datepickerFin, 0, wx.ALIGN_CENTER | wx.RIGHT, 25)
+        grid_sizer_1.Add(self.datepickerFin, 0, wx.ALIGN_CENTER, 0)
 
         grid_sizer_1.Add((0, 0), 0, 0, 0)
 
@@ -75,8 +75,6 @@ class Ajout(wx.Dialog):
         self.SetEscapeId(self.button_CANCEL.GetId())
 
         self.Layout()
-
-        self.Bind(wx.EVT_BUTTON, self.OnAjoutConfirmed, self.button_OK)
         # end wxGlade
 
     def OnAjoutConfirmed(self, event):  # wxGlade: Ajout.<event_handler>

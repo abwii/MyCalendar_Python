@@ -63,12 +63,17 @@ class Exporter(wx.Dialog):
         self.Bind(wx.EVT_BUTTON, self.OnExportPrimary, self.button_primary)
         # end wxGlade
 
+    
+
     def OnExportConfirmed(self, event):  # wxGlade: Exporter.<event_handler>
         print("Création d'event sur agenda custom")
-        id_google = (self.txt_id_google.GetValue())
-        create_event(id_google)
+        # id_google = txt_id_google.GetString()
+        # create_event(id_google)
 
     def OnExportPrimary(self, event):  # wxGlade: Exporter.<event_handler>
         addDialog = ExportPrincipalVerif(self)
+        result = addDialog.ShowModal()
+        if(result == wx.ID_OK):
+            self.lblReturn.SetLabelText(addDialog.txtEvt.GetValue())
 
 # end of class Exporter

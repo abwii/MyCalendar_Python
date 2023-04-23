@@ -17,41 +17,41 @@ class ExportPrincipalVerif(wx.Dialog):
         # begin wxGlade: ExportPrincipalVerif.__init__
         kwds["style"] = kwds.get("style", 0) | wx.DEFAULT_DIALOG_STYLE
         wx.Dialog.__init__(self, *args, **kwds)
-        self.SetTitle("Export sur agenda principal")
+        self.SetTitle("dialog")
 
         sizer_1 = wx.BoxSizer(wx.VERTICAL)
 
-        sizer_3 = wx.BoxSizer(wx.HORIZONTAL)
-        sizer_1.Add(sizer_3, 1, wx.EXPAND, 0)
-
-        txt_warning = wx.StaticText(self, wx.ID_ANY, u"Êtes-vous sûr de vouloir exporter sur l'agenda principal ?\nCette action est irréversible.")
-        sizer_3.Add(txt_warning, 0, wx.ALL, 10)
+        label_1 = wx.StaticText(self, wx.ID_ANY, u"Êtes-vous sûr de vouloir exporter sur l'agenda principal ? \nCette action est irréversible.")
+        sizer_1.Add(label_1, 0, wx.ALL, 10)
 
         sizer_2 = wx.StdDialogButtonSizer()
         sizer_1.Add(sizer_2, 0, wx.ALIGN_RIGHT | wx.ALL, 4)
 
-        self.button_YES = wx.Button(self, wx.ID_YES, "")
-        self.button_YES.SetDefault()
-        sizer_2.AddButton(self.button_YES)
+        self.button_OUI = wx.Button(self, wx.ID_YES, "")
+        self.button_OUI.SetDefault()
+        sizer_2.AddButton(self.button_OUI)
 
-        self.button_CANCEL = wx.Button(self, wx.ID_CANCEL, "")
-        sizer_2.AddButton(self.button_CANCEL)
+        self.button_NON = wx.Button(self, wx.ID_NO, "")
+        sizer_2.AddButton(self.button_NON)
 
         sizer_2.Realize()
 
         self.SetSizer(sizer_1)
         sizer_1.Fit(self)
 
-        self.SetAffirmativeId(self.button_YES.GetId())
-        self.SetEscapeId(self.button_CANCEL.GetId())
+        self.SetAffirmativeId(self.button_OUI.GetId())
 
         self.Layout()
 
-        self.Bind(wx.EVT_BUTTON, self.OnYesBtn, self.button_YES)
+        self.Bind(wx.EVT_BUTTON, self.OnYesBtn, self.button_OUI)
+        self.Bind(wx.EVT_BUTTON, self.OnNoBtn, self.button_NON)
         # end wxGlade
 
     def OnYesBtn(self, event):  # wxGlade: ExportPrincipalVerif.<event_handler>
         print("Création d'event sur agenda principal")
         create_event('primary')
-        
+
+    def OnNoBtn(self, event):  # wxGlade: ExportPrincipalVerif.<event_handler>
+        print("Event handler 'OnNoBtn' not implemented!")
+        event.Skip()
 # end of class ExportPrincipalVerif

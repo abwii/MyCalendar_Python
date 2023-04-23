@@ -11,9 +11,9 @@ def create_event(idCalendar):
 
    service = get_calendar_service()
 
-   with open('nomDuJsonCompilé.json', 'r') as f:
+   with open('json\checkbox\MergedFile.json', 'r') as f:
       data = json.load(f)
-      print(len(data))
+      print(len(data), "événements à ajouter")
 
 
 
@@ -21,23 +21,23 @@ def create_event(idCalendar):
 
       if data[i]['end'] == None : #si le json ne contient pas une date de fin -> d = date du début + 1 jour
          a = data[i]['summary']
-         b = data[i]['description']
+         b = data[i]['start' + 1]
          c = data[i]['start']
-         d = data[i]['start' + 1]
+         d = data[i]['description']
       
       else : #si le json contient une date de fin -> d = date de fin
          a = data[i]['summary']
-         b = data[i]['description']
-         c = data[i]['start']
-         d = data[i]['end']
+         b = data[i]['start']
+         c = data[i]['end']
+         d = data[i]['description']
 
       event_result = service.events().insert(
          calendarId=idCalendar,
          body={
             "summary": a,
-            "description": b,
-            "start": {"dateTime": c, "timeZone": 'UTC+1'},
-            "end": {"dateTime": d, "timeZone": 'UTC+1'},
+            "start": {"dateTime": b, "timeZone": 'UTC+1'},
+            "end": {"dateTime": c, "timeZone": 'UTC+1'},
+            "description": d,
          }
       )
 
