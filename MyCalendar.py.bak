@@ -4,6 +4,8 @@
 #
 
 import wx
+import json
+import os
 from Ajout import Ajout
 from Exporter import Exporter
 from cal_setup import get_calendar_service
@@ -52,8 +54,8 @@ class MyCalendar(wx.Frame):
         self.btnGoogle = wx.Button(self.window_1_pane_1, wx.ID_ANY, u"Connexion à Google")
         sizer_5.Add(self.btnGoogle, 0, wx.ALIGN_CENTER_VERTICAL | wx.EXPAND | wx.SHAPED, 0)
 
-        imgGoogle = wx.StaticBitmap(self.window_1_pane_1, wx.ID_ANY, wx.Bitmap("./img/F.png", wx.BITMAP_TYPE_ANY))
-        sizer_5.Add(imgGoogle, 0, wx.ALIGN_CENTER_VERTICAL | wx.EXPAND | wx.SHAPED, 0)
+        self.imgGoogle = wx.StaticBitmap(self.window_1_pane_1, wx.ID_ANY, wx.Bitmap("./img/F.png", wx.BITMAP_TYPE_ANY))
+        sizer_5.Add(self.imgGoogle, 0, wx.ALIGN_CENTER_VERTICAL | wx.EXPAND | wx.SHAPED, 0)
 
         self.window_1_pane_2 = wx.Panel(self.window_1, wx.ID_ANY)
 
@@ -97,14 +99,42 @@ class MyCalendar(wx.Frame):
         print("Connexion Google")
         get_calendar_service()
         # changement source image google connexion (👌)
+        self.imgGoogle.SetBitmap (wx.Bitmap("img\V.png"))
         print("Fin Connexion Google")
         
 
     def OnExport(self, event):  # wxGlade: MyCalendar.<event_handler>
+
+        # Supprimer le json mélangé
+        mergedJson = "json\mergedJson.json"
+        with open(mergedJson, "w") as file:
+            # Écrire un objet JSON vide dans le fichier
+            json.dump({}, file)
+        # Fin Supprimer le json mélangé
+
+        # Compiler les json selectionnés
+        directory_path = os.path.abspath("json/topics")
+        files_list = os.listdir(directory_path)
+        json_paths = []
+        
+        for file_name in files_list:
+            json_paths.append(file_name)
+
+        print(json_paths)
+        # Fin compilation
+
+        # Debut test
+        selected_topics = self.check_list_box_topics.GetCheckedStrings()
+        print(f"Topics sélectionnés : {selected_topics}")
+        file.close()
+
+
+        # Fin des tests
         addDialog = Exporter(self)
         result = addDialog.ShowModal()
         if(result == wx.ID_OK):
             self.lblReturn.SetLabelText(addDialog.txtEvt.GetValue())
+    
 
 
 # end of class MyCalendar

@@ -11,7 +11,7 @@ def create_event(idCalendar):
 
    service = get_calendar_service()
 
-   with open('nomDuJsonCompilé.json', 'r') as f:
+   with open('json\mergedJson.json', 'r') as f:
       data = json.load(f)
       print(len(data))
 

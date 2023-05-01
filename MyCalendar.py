@@ -4,6 +4,8 @@
 #
 
 import wx
+import json
+import os
 from Ajout import Ajout
 from Exporter import Exporter
 from cal_setup import get_calendar_service
@@ -43,7 +45,7 @@ class MyCalendar(wx.Frame):
         label_1.SetFont(wx.Font(13, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, ""))
         sizer_4.Add(label_1, 0, wx.ALL, 12)
 
-        self.check_list_box_topics = wx.CheckListBox(self.window_1_pane_1, wx.ID_ANY, choices=["Vacances (Zone A)", "Vacances (Zone B)", "Vacances (Zone C)", u"Jours Fériés"])
+        self.check_list_box_topics = wx.CheckListBox(self.window_1_pane_1, wx.ID_ANY, choices=["Vacances_(Zone_A)", "Vacances_(Zone_B)", "Vacances_(Zone_C)", "Jours_Feries", "Test1", "Test2"])
         sizer_4.Add(self.check_list_box_topics, 0, wx.EXPAND | wx.SHAPED, 0)
 
         sizer_5 = wx.BoxSizer(wx.HORIZONTAL)
@@ -102,10 +104,48 @@ class MyCalendar(wx.Frame):
         
 
     def OnExport(self, event):  # wxGlade: MyCalendar.<event_handler>
+
+        # Supprimer le json mélangé
+        mergedJson = "json\mergedJson.json"
+        with open(mergedJson, "w") as file:
+            # Écrire un objet JSON vide dans le fichier
+            json.dump({}, file)
+        mergedJsonValue = ""
+        # Fin Supprimer le json mélangé
+
+        # Compiler les json selectionnés
+        directory_path = os.path.abspath("json/topics")
+        files_list = os.listdir(directory_path)
+        json_paths = []
+        
+        for file_name in files_list:
+            json_paths.append(file_name)
+
+        print(json_paths)
+        
+        # Fin compilation
+
+        # Debut test
+        selected_topics = self.check_list_box_topics.GetCheckedStrings()
+        print(f"Topics sélectionnés : {selected_topics}")
+        for topic in selected_topics:
+            print("+",topic)
+            pathJson = "json/topics/"+topic+".json"
+            print (pathJson)
+            with open(pathJson, "r") as file:
+                mergedJsonValue = mergedJsonValue,json.load(file)
+            
+
+        with open('json\mergedJson.json', 'w') as f:
+            json.dump(mergedJsonValue, f)
+        print("mergedJson = ",mergedJsonValue)
+        file.close()
+        # Fin des tests
         addDialog = Exporter(self)
         result = addDialog.ShowModal()
         if(result == wx.ID_OK):
             self.lblReturn.SetLabelText(addDialog.txtEvt.GetValue())
+    
 
 
 # end of class MyCalendar
