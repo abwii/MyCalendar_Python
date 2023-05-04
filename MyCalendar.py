@@ -110,7 +110,7 @@ class MyCalendar(wx.Frame):
         with open(mergedJson, "w") as file:
             # Écrire un objet JSON vide dans le fichier
             json.dump({}, file)
-        mergedJsonValue = ""
+        mergedJsonValue = None
         # Fin Supprimer le json mélangé
 
         # Compiler les json selectionnés
@@ -133,7 +133,11 @@ class MyCalendar(wx.Frame):
             pathJson = "json/topics/"+topic+".json"
             print (pathJson)
             with open(pathJson, "r") as file:
-                mergedJsonValue = mergedJsonValue,json.load(file)
+                if mergedJsonValue == None : 
+                    mergedJsonValue = json.load(file)
+                
+                else:
+                    mergedJsonValue = mergedJsonValue,json.load(file)
             
 
         with open('json\mergedJson.json', 'w') as f:

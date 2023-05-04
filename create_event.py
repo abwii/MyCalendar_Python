@@ -19,11 +19,13 @@ def create_event(idCalendar):
 
    for i in range (0, len(data)) :
 
-      if data[i]['end'] == None : #si le json ne contient pas une date de fin -> d = date du début + 1 jour
+      if data[i]['end'] == "" : #si le json ne contient pas une date de fin -> d = date du début + 1 jour
+         print ("hello world")
          a = data[i]['summary']
          b = data[i]['description']
          c = data[i]['start']
-         d = data[i]['start' + 1]
+         d = data[i]['end']
+         
       
       else : #si le json contient une date de fin -> d = date de fin
          a = data[i]['summary']
