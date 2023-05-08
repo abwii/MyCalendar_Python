@@ -1,8 +1,11 @@
 [
   {
-    "start": "2023-04-26",
-    "annee": 2003,
-    "description": "Métropole",
-    "summary": "1er janvier"
+      "summary": "test 1",
+      "population": "-",
+      "start": "2023-04-26T00:00:00+01:00",
+      "end": "",
+      "location": "Dijon",
+      "description": "Zone A",
+      "annee_scolaire": "2022-2023"
   }
 ]
