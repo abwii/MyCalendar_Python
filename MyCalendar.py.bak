@@ -67,8 +67,7 @@ class MyCalendar(wx.Frame):
         sizer_3 = wx.GridSizer(1, 2, 0, 0)
         sizer_2.Add(sizer_3, 1, wx.EXPAND, 0)
 
-        self.btnAdd = wx.Button(self.window_1_pane_2, wx.ID_ANY, "Ajout ...")
-        sizer_3.Add(self.btnAdd, 0, wx.EXPAND, 0)
+        sizer_3.Add((0, 0), 0, 0, 0)
 
         self.btn_exporter = wx.Button(self.window_1_pane_2, wx.ID_ANY, "Exporter")
         sizer_3.Add(self.btn_exporter, 0, wx.EXPAND, 0)
@@ -84,7 +83,6 @@ class MyCalendar(wx.Frame):
         self.Layout()
 
         self.Bind(wx.EVT_BUTTON, self.ConnGoogle, self.btnGoogle)
-        self.Bind(wx.EVT_BUTTON, self.OnAdd, self.btnAdd)
         self.Bind(wx.EVT_BUTTON, self.OnExport, self.btn_exporter)
         # end wxGlade
 
@@ -110,6 +108,7 @@ class MyCalendar(wx.Frame):
         with open(mergedJson, "w") as file:
             # Écrire un objet JSON vide dans le fichier
             json.dump({}, file)
+        mergedJsonValue = ""
         # Fin Supprimer le json mélangé
 
         # Compiler les json selectionnés
@@ -121,14 +120,24 @@ class MyCalendar(wx.Frame):
             json_paths.append(file_name)
 
         print(json_paths)
+        
         # Fin compilation
 
         # Debut test
         selected_topics = self.check_list_box_topics.GetCheckedStrings()
         print(f"Topics sélectionnés : {selected_topics}")
+        for topic in selected_topics:
+            print("+",topic)
+            pathJson = "json/topics/"+topic+".json"
+            print (pathJson)
+            with open(pathJson, "r") as file:
+                mergedJsonValue = mergedJsonValue,json.load(file)
+            
+
+        with open('json\mergedJson.json', 'w') as f:
+            json.dump(mergedJsonValue, f)
+        print("mergedJson = ",mergedJsonValue)
         file.close()
-
-
         # Fin des tests
         addDialog = Exporter(self)
         result = addDialog.ShowModal()

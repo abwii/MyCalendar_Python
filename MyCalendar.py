@@ -45,7 +45,7 @@ class MyCalendar(wx.Frame):
         label_1.SetFont(wx.Font(13, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, ""))
         sizer_4.Add(label_1, 0, wx.ALL, 12)
 
-        self.check_list_box_topics = wx.CheckListBox(self.window_1_pane_1, wx.ID_ANY, choices=["Vacances_(Zone_A)", "Vacances_(Zone_B)", "Vacances_(Zone_C)", "Jours_Feries", "Test1", "Test2"])
+        self.check_list_box_topics = wx.CheckListBox(self.window_1_pane_1, wx.ID_ANY, choices=["Vacances (Zone A)", "Vacances (Zone B)", "Vacances (Zone C)", u"Jours Fériés"])
         sizer_4.Add(self.check_list_box_topics, 0, wx.EXPAND | wx.SHAPED, 0)
 
         sizer_5 = wx.BoxSizer(wx.HORIZONTAL)
@@ -64,14 +64,8 @@ class MyCalendar(wx.Frame):
         self.calendar = wx.adv.GenericCalendarCtrl(self.window_1_pane_2, wx.ID_ANY)
         sizer_2.Add(self.calendar, 0, wx.EXPAND, 0)
 
-        sizer_3 = wx.GridSizer(1, 2, 0, 0)
-        sizer_2.Add(sizer_3, 1, wx.EXPAND, 0)
-
-        self.btnAdd = wx.Button(self.window_1_pane_2, wx.ID_ANY, "Ajout ...")
-        sizer_3.Add(self.btnAdd, 0, wx.EXPAND, 0)
-
         self.btn_exporter = wx.Button(self.window_1_pane_2, wx.ID_ANY, "Exporter")
-        sizer_3.Add(self.btn_exporter, 0, wx.EXPAND, 0)
+        sizer_2.Add(self.btn_exporter, 0, wx.EXPAND | wx.SHAPED, 0)
 
         self.window_1_pane_2.SetSizer(sizer_2)
 
@@ -84,8 +78,6 @@ class MyCalendar(wx.Frame):
         self.Layout()
 
         self.Bind(wx.EVT_BUTTON, self.ConnGoogle, self.btnGoogle)
-        self.Bind(wx.EVT_BUTTON, self.OnAdd, self.btnAdd)
-        self.Bind(wx.EVT_BUTTON, self.OnExport, self.btn_exporter)
         # end wxGlade
 
     def OnAdd(self, event):  # wxGlade: MyCalendar.<event_handler>
