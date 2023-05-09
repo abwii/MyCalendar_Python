@@ -17,9 +17,13 @@ def create_event(idCalendar):
 
       my_dico = json.dumps(data)
 
-      data_washed = my_dico.replace('], [', '').replace('],[', '').replace('] ,[', '').replace('] , [', '').replace('}{', '},{').replace('[[', '[').replace(']]', ']')
+      for t in range (0,len(data)) :
+         data_washed = my_dico.replace('], [', '').replace('],[', '').replace('] ,[', '').replace('] , [', '').replace('}{', '},{').replace('[[', '[').replace(']]', ']').replace('}]{', '}{')
+         data_rinced = data_washed.replace('[[', '[').replace(']]', ']').replace('}{','},{')
 
-      data_cleaned = json.loads(data_washed)
+      print ("rinced = ", data_rinced)
+
+      data_cleaned = json.loads(data_rinced)
 
       print ("my dico = ", data_cleaned)
 
@@ -28,7 +32,7 @@ def create_event(idCalendar):
 
 
 
-   for i in range (0, len(data)) :
+   for i in range (0, len(data_cleaned)) :
 
       if data_cleaned[i]['end'] == "" : #si le json ne contient pas une date de fin -> d = date du début + 1 jour
          print ("NON pas de date")
