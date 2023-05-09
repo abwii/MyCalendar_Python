@@ -47,7 +47,7 @@ class MyCalendar(wx.Frame):
         label_1.SetFont(wx.Font(13, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, ""))
         sizer_4.Add(label_1, 0, wx.ALL, 12)
 
-        self.check_list_box_topics = wx.CheckListBox(self.window_1_pane_1, wx.ID_ANY, choices=["Vacances_(Zone_A)", "Vacances_(Zone_B)", "Vacances_(Zone_C)", "Jours_Feries", "test1", "test2", "test3"])
+        self.check_list_box_topics = wx.CheckListBox(self.window_1_pane_1, wx.ID_ANY, choices=["Vacances_(Zone_A)", "Vacances_(Zone_B)", "Vacances_(Zone_C)"])
         sizer_4.Add(self.check_list_box_topics, 0, wx.EXPAND | wx.SHAPED, 0)
 
         sizer_5 = wx.BoxSizer(wx.HORIZONTAL)
