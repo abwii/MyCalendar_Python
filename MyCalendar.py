@@ -9,6 +9,8 @@ import os
 from Ajout import Ajout
 from Exporter import Exporter
 from cal_setup import get_calendar_service
+
+
 # begin wxGlade: dependencies
 import wx.adv
 # end wxGlade
@@ -22,7 +24,7 @@ class MyCalendar(wx.Frame):
         # begin wxGlade: MyCalendar.__init__
         kwds["style"] = kwds.get("style", 0) | wx.DEFAULT_FRAME_STYLE
         wx.Frame.__init__(self, *args, **kwds)
-        self.SetSize((579, 275))
+        self.SetSize((629, 337))
         self.SetTitle("My Calendar")
         _icon = wx.NullIcon
         _icon.CopyFromBitmap(wx.Bitmap("img\\gestionnaire_calendar.png", wx.BITMAP_TYPE_ANY))
@@ -45,7 +47,7 @@ class MyCalendar(wx.Frame):
         label_1.SetFont(wx.Font(13, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, 0, ""))
         sizer_4.Add(label_1, 0, wx.ALL, 12)
 
-        self.check_list_box_topics = wx.CheckListBox(self.window_1_pane_1, wx.ID_ANY, choices=["Vacances (Zone A)", "Vacances (Zone B)", "Vacances (Zone C)", u"Jours Fériés"])
+        self.check_list_box_topics = wx.CheckListBox(self.window_1_pane_1, wx.ID_ANY, choices=["Vacances_(Zone_A)", "Vacances_(Zone_B)", "Vacances_(Zone_C)", "Jours_Feries", "test1", "test2", "test3"])
         sizer_4.Add(self.check_list_box_topics, 0, wx.EXPAND | wx.SHAPED, 0)
 
         sizer_5 = wx.BoxSizer(wx.HORIZONTAL)
@@ -70,14 +72,8 @@ class MyCalendar(wx.Frame):
         self.calendar = wx.adv.GenericCalendarCtrl(self.window_1_pane_2, wx.ID_ANY)
         sizer_2.Add(self.calendar, 0, wx.EXPAND, 0)
 
-        sizer_3 = wx.GridSizer(1, 2, 0, 0)
-        sizer_2.Add(sizer_3, 1, wx.EXPAND, 0)
-
-        self.btnAdd = wx.Button(self.window_1_pane_2, wx.ID_ANY, "Ajout ...")
-        sizer_3.Add(self.btnAdd, 0, wx.EXPAND, 0)
-
-        self.btn_exporter = wx.Button(self.window_1_pane_2, wx.ID_ANY, "Exporter")
-        sizer_3.Add(self.btn_exporter, 0, wx.EXPAND, 0)
+        self.btn_exporter = wx.Button(self.window_1_pane_2, wx.ID_ANY, "Exporter\n")
+        sizer_2.Add(self.btn_exporter, 0, wx.EXPAND | wx.SHAPED, 0)
 
         self.window_1_pane_2.SetSizer(sizer_2)
 
@@ -91,7 +87,6 @@ class MyCalendar(wx.Frame):
 
         self.Bind(wx.EVT_BUTTON, self.ConnGoogle, self.btnGoogle)
         self.Bind(wx.EVT_BUTTON, self.DecoGoogle, self.btnGoogleDeco)
-        self.Bind(wx.EVT_BUTTON, self.OnAdd, self.btnAdd)
         self.Bind(wx.EVT_BUTTON, self.OnExport, self.btn_exporter)
         # end wxGlade
 
@@ -162,5 +157,4 @@ class MyCalendar(wx.Frame):
         if(result == wx.ID_OK):
             self.lblReturn.SetLabelText(addDialog.txtEvt.GetValue())
     
-
 # end of class MyCalendar

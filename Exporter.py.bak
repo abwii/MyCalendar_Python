@@ -69,6 +69,10 @@ class Exporter(wx.Dialog):
         create_event(id_google)
 
     def OnExportPrimary(self, event):  # wxGlade: Exporter.<event_handler>
+        print('ouverture de la vérif')
         addDialog = ExportPrincipalVerif(self)
+        result = addDialog.ShowModal()
+        if(result == wx.ID_OK):
+            self.lblReturn.SetLabelText(addDialog.txtEvt.GetValue())
 
 # end of class Exporter

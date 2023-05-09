@@ -15,23 +15,37 @@ def create_event(idCalendar):
       data = json.load(f)
       print(len(data))
 
+      my_dico = json.dumps(data)
+
+      data_washed = my_dico.replace('], [', '').replace('],[', '').replace('] ,[', '').replace('] , [', '').replace('}{', '},{').replace('[[', '[').replace(']]', ']')
+
+      data_cleaned = json.loads(data_washed)
+
+      print ("my dico = ", data_cleaned)
+
+
+
+
 
 
    for i in range (0, len(data)) :
 
-      if data[i]['end'] == "" : #si le json ne contient pas une date de fin -> d = date du début + 1 jour
-         print ("hello world")
-         a = data[i]['summary']
-         b = data[i]['description']
-         c = data[i]['start']
-         d = data[i]['end']
+      if data_cleaned[i]['end'] == "" : #si le json ne contient pas une date de fin -> d = date du début + 1 jour
+         print ("NON pas de date")
+         a = data_cleaned[i]['summary']
+         b = data_cleaned[i]['description']
+         c = data_cleaned[i]['start']
+         d = c
          
       
       else : #si le json contient une date de fin -> d = date de fin
-         a = data[i]['summary']
-         b = data[i]['description']
-         c = data[i]['start']
-         d = data[i]['end']
+         print ("OUI date")
+         a = data_cleaned[i]['summary']
+         b = data_cleaned[i]['description']
+         c = data_cleaned[i]['start']
+         d = data_cleaned[i]['end']
+
+      print("|a = ",a,"|b = ",b,"|c = ",c,"|d = ",d)
 
       event_result = service.events().insert(
          calendarId=idCalendar,
@@ -43,6 +57,6 @@ def create_event(idCalendar):
          }
       )
 
-   event_result.execute()
+      event_result.execute()
 
    print("Succès")
