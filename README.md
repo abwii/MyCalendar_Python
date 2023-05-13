@@ -1,6 +1,6 @@
 # MyCalendar_Python
 <h1>Works with Python 3.0 - 3.9.16</h1>
-
+You need to install wxpython and wxglade on your computer
 <p>download the repo</p>
 pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
 <p>execute "app.py"</p>
